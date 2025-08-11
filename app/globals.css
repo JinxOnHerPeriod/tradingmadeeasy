@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #030303;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #060606;
+    --foreground: #ededed;
+  }
+
+}
+
+
+
+/* Smooth underline hover for top-level nav */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, #000000, #ffbf00);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown animations */
+.dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transition-delay: 0.15s; /* Delay hide for usability */
+}
+
+
