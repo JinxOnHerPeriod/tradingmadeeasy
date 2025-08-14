@@ -5,16 +5,12 @@
   --foreground: #030303;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #060606;
     --foreground: #ededed;
   }
-
 }
-
-
 
 /* Smooth underline hover for top-level nav */
 .nav-link {
@@ -46,4 +42,100 @@
   transition-delay: 0.15s; /* Delay hide for usability */
 }
 
+/* ------------------------ */
+/* Responsive Anpassungen */
+/* ------------------------ */
 
+/* Main container */
+main {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--foreground);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Überschriften skalieren */
+h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: transparent;
+  background: linear-gradient(180deg, #ffbf00ff, #ffffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Paragraphs skalieren */
+p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+}
+
+/* Flex Sections */
+.flex-sections {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.flex-sections section {
+  background-color: #1f2937;
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1 1 300px;
+  min-width: 250px;
+  box-shadow: 0 4px 10px rgb(6 182 212 / 0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.flex-sections section:hover {
+  transform: scale(1.05);
+}
+
+.flex-sections h2 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #06b6d4;
+}
+
+.flex-sections p {
+  font-size: clamp(0.95rem, 2vw, 1rem);
+  color: #d1d5db;
+}
+
+/* Bounce arrow */
+.bounce-arrow {
+  font-size: clamp(4rem, 15vw, 8rem);
+  margin: 2rem 0;
+  color: #ffc800ff;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+}
+
+/* Optional Media Queries für extra Feintuning */
+@media (max-width: 600px) {
+  main {
+    padding: 2rem 1rem;
+  }
+  .flex-sections {
+    gap: 1rem;
+  }
+}
