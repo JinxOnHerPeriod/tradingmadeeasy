@@ -1,4 +1,4 @@
-export default function PrivacyDisclaimer() {
+export default function PrivacyPage() {
   return (
     <main className="max-w-4xl mx-auto p-6 text-gray-200 bg-gray-900 rounded-md shadow-md">
       <h1 className="text-3xl font-bold mb-6 text-teal-400">Datenschutz- und Urheberrechtshinweis</h1>

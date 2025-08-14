@@ -42,7 +42,7 @@ export default function HomePage() {
         style={{
           fontSize: "8rem",
           margin: "2rem 0",
-          color: "linear-gradient(180deg, #ffbf00ff, #ffffffff)",
+          color: "#ffc800ff",
           animation: "bounce 2s infinite",
         }}
       >
