@@ -1,4 +1,3 @@
-// app/ClientHeader.tsx
 'use client';
 
 import Link from "next/link";
@@ -40,7 +39,10 @@ export default function ClientHeader() {
     exit: { opacity: 0, y: -10, scale: 0.98, pointerEvents: "none" as const },
   };
 
-  const renderDropdown = (menuName: string, items: (string | { label: string; href: string })[]) => (
+  const renderDropdown = (
+    menuName: string,
+    items: ({ label: string; href: string })[]
+  ) => (
     <AnimatePresence>
       {openMenu === menuName && (
         <motion.ul
@@ -51,15 +53,15 @@ export default function ClientHeader() {
           variants={dropdownVariants}
           transition={{ duration: 0.008, ease: "easeInOut" }}
         >
-          {items.map((item, i) => {
-            const label = typeof item === "string" ? item : item.label;
-            const href = typeof item === "string" ? "#" : item.href;
-            return (
-              <li key={i} className="dropdown-item" style={{ "--i": i + 1 } as React.CSSProperties}>
-                {navItem(href, label)}
-              </li>
-            );
-          })}
+          {items.map((item, i) => (
+            <li
+              key={i}
+              className="dropdown-item"
+              style={{ "--i": i + 1 } as React.CSSProperties}
+            >
+              {navItem(item.href, item.label)}
+            </li>
+          ))}
         </motion.ul>
       )}
     </AnimatePresence>
@@ -78,29 +80,57 @@ export default function ClientHeader() {
 
         {/* Menu */}
         <ul className="flex space-x-8 font-medium">
-          <li><Link href="/" className="relative nav-link">Home</Link></li>
+          <li>
+            <Link href="/" className="relative nav-link">
+              Home
+            </Link>
+          </li>
 
-          <li className="relative" onMouseEnter={() => handleMouseEnter("learn")} onMouseLeave={handleMouseLeave}>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("learn")}
+            onMouseLeave={handleMouseLeave}
+          >
             <span className="cursor-pointer nav-link">Learn</span>
-            {renderDropdown("learn", ["Basic Understandings", "Technical Analysis", "Money Management", "Psychology"])}
+            {renderDropdown("learn", [
+              { label: "Basic Understandings", href: "/learn/basics" },
+              { label: "Technical Analysis", href: "/learn/technicals" },
+              { label: "Money Management", href: "/learn/moneymanagement" },
+              { label: "Psychology", href: "/learn/psychology" },
+            ])}
           </li>
 
-          <li className="relative" onMouseEnter={() => handleMouseEnter("live")} onMouseLeave={handleMouseLeave}>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("live")}
+            onMouseLeave={handleMouseLeave}
+          >
             <span className="cursor-pointer nav-link">Live Trading</span>
-            {renderDropdown("live", ["Best Brokers", "Platforms", "Demo Trading"])}
+            {renderDropdown("live", [
+              { label: "Best Brokers", href: "/livetrading/brokers" }, 
+              { label: "Platforms", href: "/livetrading/plattforms" },
+              { label: "Demo Trading", href: "/demo" },
+            ])}
           </li>
 
-          <li className="relative" onMouseEnter={() => handleMouseEnter("prop")} onMouseLeave={handleMouseLeave}>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("prop")}
+            onMouseLeave={handleMouseLeave}
+          >
             <span className="cursor-pointer nav-link">Prop Firms Trading</span>
-            {renderDropdown("prop", ["Best Firms", "Be Aware", "Risk Management"])}
+            {renderDropdown("prop", [
+              { label: "Best Firms", href: "/prophelp" },
+              { label: "Be Aware", href: "/prophelp/beware" },
+              { label: "Risk Management", href: "/prophelp/risk" },
+            ])}
           </li>
-          
+
           <li className="relative">
             <Link href="/about/mystory" className="cursor-pointer nav-link">
               About
             </Link>
           </li>
-
         </ul>
       </nav>
     </header>
